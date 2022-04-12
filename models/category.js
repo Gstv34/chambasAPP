@@ -7,7 +7,7 @@ const CategorySchema = Schema({
     },
     state: {
         type: Boolean,
-        default: false,
+        default: true,
     },
     usuario:{
         type: Schema.Types.ObjectId,
@@ -15,4 +15,10 @@ const CategorySchema = Schema({
         required: true
     }
 });
+
+CategorySchema.methods.toJSON = function() {
+    const {__v, _id, state, ...category} = this.toObject();
+    category.uid = _id;
+    return category;
+}
  module.exports = model('Category',CategorySchema);

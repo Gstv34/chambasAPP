@@ -47,7 +47,7 @@ const usersPut = async(req = request, res = response)=>{
 
     const usuario = await User.findByIdAndUpdate(id, restUser);
     res.json({
-        "msg": `put: {{url}}/api/usuarios/:id = ${id}`,usuario
+        "msg": `put: {{url}}/api/usuarios/:${id}`,usuario
     });
 
 } 
@@ -56,7 +56,7 @@ const usersDelete = async(req = request , res = response)=>{
 
     const usuario = await User.findByIdAndUpdate(id,{verify : false});
     res.json({
-        "msg": `delete: {{url}}/api/usuarios/:id = ${id}`,
+        "msg": `delete: {{url}}/api/usuarios/:${id}`,
         usuario 
     });
 }  
