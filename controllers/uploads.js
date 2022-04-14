@@ -3,6 +3,7 @@ const cloudinary = require('cloudinary').v2
 cloudinary.config(process.env.CLOUDINARY_URL);
 
 const Usuario = require('../models/user');
+const Category = require('../models/category');
 
 const actualizarImagen = async (req, res = response ) => {
     const {id, coleccion} = req.params;
@@ -16,6 +17,14 @@ const actualizarImagen = async (req, res = response ) => {
                 return res.status(400).json({
                     msg: 'No existe un usuario con el id proporcionado'
                 });
+            }
+        break;
+        case 'categoria': 
+            modelo = await Category.findById(id);
+            if(!modelo){
+                return res.status(400).json({
+                    msg: 'No existe una categoria con el id proporcionado'
+            });
             }
         break;
         default: return res.status(500).json({msg:'Se me olvidó validar esto'});

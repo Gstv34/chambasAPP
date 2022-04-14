@@ -9,6 +9,9 @@ const CategorySchema = Schema({
         type: Boolean,
         default: true,
     },
+    img:{
+        type: String
+    },
     usuario:{
         type: Schema.Types.ObjectId,
         ref: 'User',
