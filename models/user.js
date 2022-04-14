@@ -44,7 +44,8 @@
         google: {
             type: Boolean,
             default: false
-        },     
+        }, 
+        img: {type: String}    
     },
     {
         timestamps: true,

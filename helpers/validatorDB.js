@@ -27,10 +27,18 @@ const categoryExist = async(id) =>{
         throw new Error('Esta categoría no existe');
     } 
 }
+const collectionsPermit = (coleccion = '', colecciones = []) =>{
+    const incluida = colecciones.includes(coleccion);
+    if(!incluida){
+        throw new Error('La coleccíon no es permitida');
+    }
+    return true;
+}
 
 module.exports = {
     isRoleValid,
     emailExist,
     userIDExist,
-    categoryExist
+    categoryExist,
+    collectionsPermit
 }
