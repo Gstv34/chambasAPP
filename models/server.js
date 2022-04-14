@@ -10,6 +10,7 @@ class Server{
         this.path = {
             auth       : '/api/auth',
             usuarios   : '/api/usuarios',
+            free       : '/api/usuarios/free',
             categorias : '/api/categorias',
             files      : '/api/file' 
         };
@@ -27,7 +28,7 @@ class Server{
         this.app.use(this.path.usuarios, require('../routes/usuarios'));
         this.app.use(this.path.categorias, require('../routes/categorias'));
         this.app.use(this.path.files, require('../routes/uploads'));
-
+        this.app.use(this.path.free, require('../routes/freelancer'));
     }
 
     middlewares(){

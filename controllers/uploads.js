@@ -3,9 +3,11 @@ const cloudinary = require('cloudinary').v2
 cloudinary.config(process.env.CLOUDINARY_URL);
 
 const Usuario = require('../models/user');
+const Free = require('../models/freelancer');
 const Category = require('../models/category');
 
-const actualizarImagen = async (req, res = response ) => {
+
+const cloudImgPut = async (req, res = response ) => {
     const {id, coleccion} = req.params;
     let modelo;
 
@@ -46,6 +48,33 @@ const actualizarImagen = async (req, res = response ) => {
     res.json(modelo);
 }
 
+const imgsPut = async(req, res = response) => {
+const {id} = req.params;
+const freelancer = await Free.findById(id);
+
+     if(!freelancer){
+        return res.status(400).json({
+                    msg: 'No existe un prestador de servicios con el id proporcionado'
+         });
+    }
+
+    if(freelancer.img.length <= 4){
+
+    const {tempFilePath} = req.files.archivo
+    const {secure_url} = await cloudinary.uploader.upload(tempFilePath);
+    const free = await Free.findOneAndUpdate({_id: id },{$push:{img : secure_url}}); 
+
+    await free.save();
+
+    }else{
+        return res.status(406).json(
+            {msg : 'Ha alcanzado el máximo de imagenes almacenadas'});
+    }
+
+    res.json(freelancer);
+}
+
 module.exports = {
-    actualizarImagen
+    cloudImgPut,
+    imgsPut
 }
