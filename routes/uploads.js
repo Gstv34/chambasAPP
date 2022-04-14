@@ -2,13 +2,17 @@ const {Router} = require('express');
 const { check } = require('express-validator');
 
 const {validarCampos} = require('../middlewares')
-const {actualizarImagen} = require('../controllers/uploads');
- const {collectionsPermit} = require('../helpers/validatorDB');
+const {cloudImgPut,imgsPut} = require('../controllers/uploads');
+
 
 const router =  Router();
 
 router.put('/:coleccion/:id', [ 
     check('id','No es un ID valido').isMongoId(), 
-    validarCampos],actualizarImagen);
+    validarCampos],cloudImgPut);
+
+router.put ('/usuario/:id/img',[
+    check('id','No es un ID valido').isMongoId(), validarCampos
+],imgsPut);
 
 module.exports = router;
