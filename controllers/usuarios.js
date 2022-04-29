@@ -22,7 +22,7 @@ const usersGet = async (req = request, res = response)=>{
 }
 const usersPost = async (req, res = response)=>{
 
-    const {name,lastname, address, age, email, password, role} = req.body;
+    const {name,lastname, address, age, email, password, role, phone} = req.body;
 
     const usuario = new User({name, lastname, address,age, email, password, role, phone});
     
