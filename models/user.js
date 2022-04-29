@@ -46,7 +46,7 @@
             default: false
         }, 
         img: {type: String,
-              default : 'https://res.cloudinary.com/chambas/image/upload/v1649946578/cmuvelvscirxvchgtznj.png'
+              default : 'https://res.cloudinary.com/chambas/image/upload/v1651270177/srs8o6toore6gnudex6q.png'
         },    
     },
     {

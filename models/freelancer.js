@@ -43,7 +43,7 @@ const { Schema, model} =require('mongoose');
     }
     );
     FreeSchema.methods.toJSON = function() {
-        const {createdAt, updatedAt, _id, rank, ...free} = this.toObject();
+        const {createdAt, updatedAt, _id, ...free} = this.toObject();
         free.uid = _id;
         return free;
     }

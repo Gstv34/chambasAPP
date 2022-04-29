@@ -14,7 +14,7 @@ const freePopularGet = async(req, res = response) =>{
         Free.countDocuments(query),
         Free.find(query).skip(Number(from)).limit(Number(limit))
         .populate('categories', {usuario:0})
-        .populate('usuario', {  _id: 1, name: 1, lastname: 1})
+        .populate('usuario', {  _id: 1, name: 1, lastname: 1, img: 1})
     ]);
 
     res.json({
@@ -23,6 +23,17 @@ const freePopularGet = async(req, res = response) =>{
         usuarios
     });
 
+}
+const freeGetID = async(req = request, res = response) => {
+    const {id} = req.params;
+    const freelancer = await Free.findById(id)
+    .populate('categories', {usuario:0})
+    .populate('usuario', {  _id: 1, name: 1, lastname: 1,img: 1});
+    
+    res.json({
+        route: `get: {{url}}/api/usuarios/free:${id}`,
+        freelancer
+    });
 }
 const freeCatGet = async(req, res = response) =>{
     const {page, limit = 5, from = 0} = req.query; 
@@ -37,7 +48,7 @@ const freeCatGet = async(req, res = response) =>{
         Free.countDocuments(query),
         Free.find(query).skip(Number(from)).limit(Number(limit))
         .populate('categories', {usuario:0})
-        .populate('usuario', {  _id: 1, name: 1, lastname: 1})
+        .populate('usuario', {  _id: 1, name: 1, lastname: 1,img: 1})
     ]);
 
     res.json({
@@ -64,5 +75,6 @@ const {exp, skills, social, categories, rank, usuario} = req.body;
 module.exports = {
     freePopularGet,
     freePost,
-    freeCatGet
+    freeCatGet,
+    freeGetID
 }
