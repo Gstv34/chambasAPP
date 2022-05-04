@@ -12,7 +12,8 @@ class Server{
             usuarios   : '/api/usuarios',
             free       : '/api/usuarios/free',
             categorias : '/api/categorias',
-            files      : '/api/file' 
+            files      : '/api/file',
+            search     : '/api/search' 
         };
 
         //Connection to DB
@@ -29,6 +30,7 @@ class Server{
         this.app.use(this.path.categorias, require('../routes/categorias'));
         this.app.use(this.path.files, require('../routes/uploads'));
         this.app.use(this.path.free, require('../routes/freelancer'));
+        this.app.use(this.path.search, require('../routes/search'));
     }
 
     middlewares(){
