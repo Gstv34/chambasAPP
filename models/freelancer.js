@@ -14,9 +14,10 @@ const { Schema, model} =require('mongoose');
             media :{
                 facebook : String,
                 instagram: String,
-                twitter : String,
-                github  : String,
-                youtube : String,
+                twitter  : String,
+                github   : String,
+                youtube  : String,
+                linkedin : String
             },
             required: false
         },
@@ -33,7 +34,7 @@ const { Schema, model} =require('mongoose');
             type: Schema.Types.ObjectId,
             ref: 'User',
             required: true
-        }, 
+        },
         img: {type: [String],
         required: false},    
     },
