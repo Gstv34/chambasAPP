@@ -1,6 +1,7 @@
 const Category = require('../models/category');
 const Role = require('../models/role');
 const User = require('../models/user');
+const Free = require('../models/freelancer');
 
 const isRoleValid = async(role = '') => {
     const existRole = await Role.findOne({role});
@@ -27,6 +28,12 @@ const categoryExist = async(id) =>{
         throw new Error('Esta categoría no existe');
     } 
 }
+const freeExist = async(id) =>{
+    const existFreelancer = await Free.findById(id);
+    if(!existFreelancer){
+        throw new Error('Este freelancer no existe');
+    } 
+}
 const collectionsPermit = (coleccion = '', colecciones = []) =>{
     const incluida = colecciones.includes(coleccion);
     if(!incluida){
@@ -39,6 +46,7 @@ module.exports = {
     isRoleValid,
     emailExist,
     userIDExist,
+    freeExist,
     categoryExist,
     collectionsPermit
 }
