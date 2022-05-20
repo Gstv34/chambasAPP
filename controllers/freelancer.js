@@ -1,6 +1,7 @@
 const { request, response } = require("express");
 const { default: mongoose } = require("mongoose");
 const Free = require('../models/freelancer');
+const User = require('../models/user');
 
 const freePopularGet = async(req, res = response) =>{
     const {page, limit = 5, from = 0, stars = "5", category = null} = req.query; 
@@ -61,9 +62,11 @@ const freeCatGet = async(req, res = response) =>{
 
 const freePost = async (req = request, res = response) => {
 
-const {exp, skills, social, categories, rank, usuario} = req.body;
+const {desc, exp, skills, social, categories, rank, usuario} = req.body;
 
-    const freelancer = new Free({exp,skills,social,categories,rank,usuario});
+    const freelancer = new Free({desc,exp,skills,social,categories,rank,usuario});
+    const user = await User.findByIdAndUpdate(usuario, {role : "FREE_ROLE"});
+    await user.save();
     await freelancer.save();
 
  res.json({

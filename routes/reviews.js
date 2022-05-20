@@ -24,7 +24,9 @@ router.post('/',
     ],
 reviewPost);
 
-router.put('/:id', reviewPut);
+router.put('/:id',
+        validarJWT,
+        reviewPut);
 
 
 module.exports = router;

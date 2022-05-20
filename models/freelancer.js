@@ -17,11 +17,12 @@ const { Schema, model} =require('mongoose');
         social: {
             media :{
                 facebook : String,
-                instagram: String,
-                twitter  : String,
+                whatsapp : String,
+                linkedin : String,
                 github   : String,
                 youtube  : String,
-                linkedin : String
+                instagram: String,
+                twitter  : String,
             },
             required: false
         },
